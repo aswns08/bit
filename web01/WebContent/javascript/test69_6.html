@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<style>
+form th {
+  text-align: right;
+}
+</style>
+</head>
+
+<body>
+<!-- 게시판 목록 -->
+<h1>게시판 목록</h1>
+<table id='boardTable' border='1'>
+<tr>
+  <th>번호</th>
+  <th>제목</th>
+  <th>작성자</th>
+  <th>등록일</th>
+  <th>조회수</th>
+</tr>
+</table>
+<hr>
+<h2>게시물 상세정보</h2>
+<form>
+<table>
+<tr>
+  <th>제목</th> 
+  <td><input type="text" id="title"></td>
+</tr>
+<tr> 
+  <th>내용</th> 
+  <td><textarea id="content"></textarea></td>
+</tr>
+<tr>
+  <th>작성자</th> 
+  <td><input type="text" id="writer"></td>
+</tr>
+<tr>
+  <th>암호</th> 
+  <td><input type="password" id="password"></td>
+</tr>
+</table>
+<button id='btnAdd' type='button'>추가</button>
+<button id='btnCancel' type='reset'>취소</button>
+</form>
+<script>
+"use strict"; 
+
+//목표: DOM API를 사용하여 tr태그 추가 및 삭제
+
+// 게시글을 저장하는 객체 생성자 함수
+function Board(title, content, writer, password) {
+	this.title = title;
+	this.content = content;
+	this.writer = writer;
+	this.password = password;
+	this.date = new Date();
+	this.count = 0;
+}
+
+function resetForm() {
+	// reset 버튼에게 click 이벤트를 전달 
+	//1) MouseEvent 객체 생성
+	var event = new MouseEvent('click', {
+    'view': window,
+    'bubbles': true,
+    'cancelable': true
+  });
+	
+	//2) reset  버튼에게 이벤트 전달
+	document.getElementById('btnCancel').dispatchEvent(event);
+}
+
+var boardList = [];
+
+document.getElementById('btnAdd').onclick = function(event) {
+	var board = new Board(
+			document.getElementById('title').value,
+			document.getElementById('content').value,
+			document.getElementById('writer').value,
+			document.getElementById('password').value);
+	
+	boardList.push(board);
+	
+	resetForm();
+	
+	refreshBoardList();
+};
+
+function refreshBoardList() {
+	var boardTable = document.getElementById('boardTable');
+	//var tbody = boardTable.children[0]; // <tbody>
+	var tbody = boardTable.firstElementChild; // <tbody>
+	for (var i = tbody.children.length -1 ; i > 0; i--) {
+		//console.log(tbody.children[i]);
+		tbody.removeChild(tbody.children[i]);
+	}
+	  
+	var tr = null;
+	var td = null;
+	var text = null;
+	for (var i in boardList) {
+		tr = document.createElement('tr');
+		
+		td = document.createElement('td');
+		text = document.createTextNode(i);
+		td.appendChild(text);
+		tr.appendChild(td);
+		
+		td = document.createElement('td');
+	  text = document.createTextNode(boardList[i].title);
+	  td.appendChild(text);
+	  tr.appendChild(td);
+		
+	  td = document.createElement('td');
+    text = document.createTextNode(boardList[i].writer);
+    td.appendChild(text);
+	  tr.appendChild(td);
+	  
+	  td = document.createElement('td');
+	  text = document.createTextNode(toYYYYMMDD(boardList[i].date));
+	  td.appendChild(text);
+	  tr.appendChild(td);
+	  
+	  td = document.createElement('td');
+	  text = document.createTextNode(boardList[i].count);
+	  td.appendChild(text);
+	  tr.appendChild(td);
+	  
+	  tbody.appendChild(tr);
+	}
+}
+
+function toYYYYMMDD(date) {
+	return date.getFullYear() + '-' +
+	  (date.getMonth() + 1) + '-' +
+	  date.getDate();
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
