@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>music</title>
+<link href="common.css" rel="stylesheet" type="text/css">
+<link href="generalpage.css" rel="stylesheet" type="text/css">
+<!-- 
+레이아웃 => 위치 이동
+1) float 
+=> 출력될 현재 위치에서 오른쪽 또는 왼쪽으로 이동
+=> 기본 출력 순서에서 제외됨
+	( 기본 출력 순서 => 웹 브라우저는 콘텐츠를 출력할 때 항상 좌->우
+	위->아래 출력한다.
+	사용법 => float: left 또는 right;
+	예) float: left;
+	예) float: right;
+	
+2) absolute
+	=> absolute 또는 fixed 조상을 기준으로 위치지정
+	=> absolute 조상이 없으면  body 태그를 기준으로 위치 지정한다.
+	=> left, right, top, bottom의 속성 값으로 위치를 조정한다.
+3) relative
+	=> 기본 출력 순서를 고수하면서, 위치를 상/하/좌/우로 움직이고 싶을 때 사용.
+4) fixed
+ 	=> 브라우저 클라이언트 창(내용이 출력되는 창)을 기준으로 위치를 지정.
+ 	=> 스크롤 해도 움직이지 않는다.
+ * div 와 span
+ 1) div => 블록타입(라인 점유). UI 객체를 묶어서 다루고자 할 때.
+ 2) span => 인라인 타입(라인에 포함됨). 내용을 구분하고자 할 때.
+
+ -->
+
+
+</head>
+<body>
+	<div id='main'>
+
+		<div id='header'>
+
+			<div id='menubar'>
+				<a href='#'>공지사항</a> <a href='#'>자료실</a> <a href='#'>수업</a> <a
+					href='#'>로그아웃</a>
+			</div>
+		</div>
+		<div id='sidebar'>
+			<div id='user'>
+				<img width='80' src='user02.jpg'> <span id='userName'>송소희</span>
+			</div>
+			<h1>리스트</h1>
+			<ul>
+				<li><a id='a' href='#music1'>음악1</a></li>
+				<li><a id='b' href='#music2'>음악2</a></li>
+				<li><a id='c' href='#music3'>음악3</a></li>
+			</ul>
+		</div>
+
+		<div id='content'>
+			<div id='info'>
+				<div id='index' class='act'>
+					<p>인덱스</p>
+				</div>
+
+				<!-- <p id='music1' style='display: none;' class='inact'><audio src="Kalimba.mp3" controls="controls" autoplay="autoplay"></audio></p>
+ -->
+				<div id='music1' style='display: none;' class='inact'>
+
+					<img width='300px' src='musicimg1.jpg'>
+					<audio src="Kalimba.mp3" controls="controls"></audio>
+					<p>신촌을 못가 포스트맨</p>
+				</div>
+
+
+				<div id='music2' style='display: none;' class='inact'>
+					<img width='300px' src='musicimg2.jpg'>
+					<audio src="Kalimba.mp3" controls="controls"></audio>
+					<p>당신만이 곽진언 김필 임도혁</p>
+				</div>
+
+				<div id='music3' style='display: none;' class='inact'>
+					<img width='300px' src='musicimg3.jpg'>
+					<audio src="Kalimba.mp3" controls="controls"></audio>
+					<p>Lost Stars Adam Levine (Maroon 5)</p>
+				</div>
+
+			</div>
+
+			<div id='btn'>
+				<button type='button' id='prev'><</button>
+				<button type='button' id='next'>></button>
+				<button type='button' id='btnStop'>메인</button>
+			</div>
+
+		</div>
+
+		<div id='footer'>
+			<p>비트교육센터 자바63기</p>
+
+		</div>
+
+
+	</div>
+
+	<script src='test69_common.js'></script>
+
+	<script>
+		"use strict";
+
+
+		document.getElementById('a').onclick = function(event) {
+			$('#index').css('display', 'none');
+			$('#music1').css('display', '');
+			$('#music2').css('display', 'none');
+			$('#music3').css('display', 'none');
+		};
+
+		document.getElementById('b').onclick = function(event) {
+			$('#index').css('display', 'none');
+			$('#music2').css('display', '');
+			$('#music1').css('display', 'none');
+			$('#music3').css('display', 'none');
+		};
+
+		document.getElementById('c').onclick = function(event) {
+			$('#index').css('display', 'none');
+			$('#music1').css('display', 'none');
+			$('#music2').css('display', 'none');
+			$('#music3').css('display', '');
+		};
+
+		document.getElementById('btnStop').onclick = function(event) {
+			$('#index').css('display', '');
+			$('#music1').css('display', 'none');
+			$('#music2').css('display', 'none');
+			$('#music3').css('display', 'none');
+		};
+	</script>
+
+</body>
+</html>
