@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>엘리먼트 이동하기</title>
+
+
+<script src='jquery-1.11.1.js'></script>
+<script>
+
+/* 
+* 
+*/
+ 
+ // appendTo (부모의 막내 자식으로 붙이는 함수)
+ $(function(){
+	setInterval(function() {
+		$('img:first').appendTo('body');
+	}, 1000); //0.5초 500밀리 세컨드
+});
+ 
+</script>
+ 
+</head>
+<body>
+ <img src='img.jpg' width='150'>
+ <img src='img2.jpg' width='150'>
+ <img src='img3.jpg' width='150'>
+ <img src='img4.jpg' width='150'>
+ <img src='img5.jpg' width='150'>
+</body>
+</html>

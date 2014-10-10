@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+<style>
+form th {
+  text-align: right;
+}
+</style>
+</head>
+
+<body>
+<!-- 게시판 목록 -->
+<h1>게시판 목록</h1>
+<table border='1'>
+<tr>
+  <th>번호</th>
+  <th>제목</th>
+  <th>작성자</th>
+  <th>등록일</th>
+  <th>조회수</th>
+</tr>
+<tr>
+  <td>3</td>
+  <td>aaaaaa</td>
+  <td>홍길동</td>
+  <td>2014-1-1</td>
+  <td>7</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>aaaaaa</td>
+  <td>홍길동</td>
+  <td>2014-1-1</td>
+  <td>8</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>aaaaaa</td>
+  <td>홍길동</td>
+  <td>2014-1-1</td>
+  <td>11</td>
+</tr>
+</table>
+<hr>
+<h2>게시물 상세정보</h2>
+<form>
+<table>
+<tr>
+  <th>제목</th> 
+  <td><input type="text" id="title"></td>
+</tr>
+<tr>
+  <th>내용</th> 
+  <td><textarea id="content"></textarea></td>
+</tr>
+<tr>
+  <th>작성자</th> 
+  <td><input type="text" id="writer"></td>
+</tr>
+<tr>
+  <th>암호</th> 
+  <td><input type="password" id="password"></td>
+</tr>
+</table>
+<button id='btnAdd' type='button'>추가</button>
+<button id='btnCancel' type='reset'>취소</button>
+</form>
+<script>
+"use strict"; 
+
+var boardList = [];
+
+document.getElementById('btnAdd').onclick = function(event) {
+	var title = document.getElementById('title').value;
+	var content = document.getElementById('content').value;
+	var writer = document.getElementById('writer').value;
+	var password = document.getElementById('password').value;
+	
+	boardList.push([title, content, writer, password])
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

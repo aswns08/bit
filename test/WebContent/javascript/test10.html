@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>동적 타입 바인딩</title>
+</head>
+
+<body>
+<script>
+ "use strict"; // 엄격한 문법 검사를 요구함
+ /* 
+ 동적 타입 바인딩 = > 변수에 값을 넣을 때 변수의 데이터 타입이 결정된다.
+ */
+
+ function displayVarType() {
+	 console.log("-------------------")
+	 console.log(typeof(v1));
+	 console.log(typeof(v2));
+	 console.log(typeof(v3));
+	 console.log(typeof(v4));
+	 console.log(typeof(v5));
+	 console.log(typeof(v6));
+	 console.log(typeof(v7));
+	  
+ }
+ 
+ var v1, v2, v3, v4, v5, v6, v7 ;
+ 
+ v1 = 10; // number
+ v2 = 3.14; // number
+ v3 = "홍길동"; // string
+ v4 = true ; // boolean
+ v5 = null;
+ v6 = {name:"홍길동", age:30};
+ v7 = function() {};
+ 
+ displayVarType();
+ 
+ v1 = "문자열";
+ v2 = true;
+ v3 = 500;
+ v4 = 20 ;
+ v5 = "okok";
+ v6 = true ;
+ v7 = 20;
+ 
+ // 대부분의 스크립트 언어는 동적바인딩을 지원!!!
+ // java 에서는 정적바인딩 데이터형이 변하지 않음.
+ displayVarType();
+ </script>
+
+
+</body>
+</html>

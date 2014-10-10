@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css 분리하기</title>
+<link href="common.css" rel="stylesheet" type="text/css">
+<link href="generalpage.css" rel="stylesheet" type="text/css">
+<link href="test14.css" rel="stylesheet" type="text/css">
+<!-- 
+레이아웃 => 위치 이동
+1) float 
+=> 출력될 현재 위치에서 오른쪽 또는 왼쪽으로 이동
+=> 기본 출력 순서에서 제외됨
+	( 기본 출력 순서 => 웹 브라우저는 콘텐츠를 출력할 때 항상 좌->우
+	위->아래 출력한다.
+	사용법 => float: left 또는 right;
+	예) float: left;
+	예) float: right;
+	
+2) absolute
+3) relative
+	=> 기본 출력 순서를 고수하면서, 위치를 상/하/좌/우로 움직이고 싶을 때 사용.
+4) fixed
+ 
+ * div 와 span
+ 1) div => 블록타입(라인 점유). UI 객체를 묶어서 다루고자 할 때.
+ 2) span => 인라인 타입(라인에 포함됨). 내용을 구분하고자 할 때.
+ 
+ -->
+
+</head>
+<body>
+<div id='main'>
+<div id='header'>
+<img id='logo' src='http://dummyimage.com/140x50/ffff00/f00.png&text=Bit+Talk'>
+<div id='menubar'>
+	<a href='#'>공지사항</a>
+	<a href='#'>자료실</a>
+	<a href='#'>수업</a>
+	<a href='#'>로그아웃</a>
+</div>
+</div>
+<div id='sidebar'>
+<div id='user'>
+	<img src='user02.jpg'> 
+	<span id='userName'>아만다</span>
+</div>
+<h1>알림</h1>
+<ul>
+	<li>출석률이 저조합니다 </li>
+	<li>과제 제출하세요 </li>
+	<li>수당지급 연기되었습니다. </li>
+</ul>
+
+<h1>소식</h1>
+<p>와우~~ 우리가 이길꺼야 </p>
+<p>내일 공모전은 취소 (뻥..) </p>
+<p>책 공동구매 하려고 합니다. 참여하실분~ </p>
+</div>
+
+<div id='content'>
+<div id='breadcrumb'>공지사항</div>
+<h1>곤욕치른 애플 ios8 상위버전 준비 끝</h1>
+<p>애플이 런처앱(시작화면 앱)을 앱스토어에서 제거했다. 
+<br>
+런처앱을 이용하면 iOS8의 위젯 기능이 ‘오작동’ 할 가능성이 있다는 이유를 내세웠다. 
+<br> 
+28일(현지시간) 나인투파이브맥은 애플이 iOS8에서 빠르게 앱에 접속할 수 있도록 하는 런처앱을 앱스토어에서 삭제했다고 보도했다.
+<br> 
+안드로이드와는 달리 애플은 iOS에서 런처 기능을 제공하지 않는다. 
+<br>
+바탕화면에서 런처 앱을 사용하려면 관련 기능을 제공하는 앱을 앱스토어에서 내려받아야 했다. 
+<br>
+애플이 런처앱을 삭제하면서 iOS8에서는 이마저도 이용할 수 없게 됐다. </p>
+</div>
+
+<div id='footer'>
+<p>비트교육센터 자바63기</p>
+
+</div>
+
+
+</div>
+</body>
+</html>

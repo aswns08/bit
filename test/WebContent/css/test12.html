@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DIV 다루기</title>
+<style>
+
+/* border => 콘텐츠를 둘러싸는 선
+1) border-top, border-right, border-bottom, border-left
+2) border-color => 테두리 색상
+3) border-style => 테두리 모양
+4) border-width => 테두리 두께
+5) 단축표기 => border: 두께 스타일 색상; 순서는 상관없다.
+	border: dashed 2px red;
+	border: #ff0000 silid 2px
+
+padding => 테두리와 콘텐츠 사이의 공간
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+
+2) 단축 표기법
+padding: 위 오른쪽 아래 왼쪽 ; 예) padding: 10px 10px 10px 10px;
+=> 시계방향
+padding: 위/아래 오른쪽/왼쪽 ; 예) padding: 10px 50px;
+
+padding: 모든방향 ; 예) padding: 10px ;
+ 
+margin => 테두리 바깥의 공간
+=>위, 아래 엘리먼트의 마진은 둘 중 큰 값으로 합쳐진다.
+
+실제 태그의 크기 => 콘텐츠 크기(width) + 테두리 두께 + 패딩 크기 + 마진 크기
+
+*/
+div#main {
+width: 600px;
+
+border-width: 1px;
+border-color: red;
+border-style: solid;
+/*
+padding-top: 10px;
+padding-right: 10px;
+padding-bottom: 10px;
+padding-left: 10px;
+*/
+/* padding: 10px 30px 50px 70px; */
+
+/* padding: 10px 30px; */
+
+padding: 10px ;
+margin: 0px auto;
+}
+
+#header {
+ border: 1px solid red;
+}
+
+#sidebar {
+ border: 1px solid red;
+}
+
+#content {
+ border: 1px solid red;
+}
+
+#footer {
+ border: 1px solid red;
+}
+div {
+padding: 10px;
+margin: 5px;
+}
+
+</style>
+</head>
+<body>
+<div id='main'>
+<div id='header'>
+<img src='http://dummyimage.com/140x50/ffff00/f00.png&text=Bit+Talk'>
+<div>
+	<a href='#'>공지사항</a>
+	<a href='#'>자료실</a>
+	<a href='#'>수업</a>
+</div>
+
+<a href='#'>로그아웃</a>
+</div>
+<div id='sidebar'>
+<div id='user'>
+	<img src=''> 홍길동
+</div>
+<h1>알림</h1>
+<ul>
+	<li>출석률이 저조합니다 </li>
+	<li>과제 제출하세요 </li>
+	<li>수당지급 연기되었습니다. </li>
+</ul>
+
+<h1>소식</h1>
+<p>와우~~ 우리가 이길꺼야 </p>
+<p>내일 공모전은 취소 (뻥..) </p>
+<p>책 공동구매 하려고 합니다. 참여하실분~ </p>
+</div>
+
+<div id='content'>
+<div id='breadcrumb'>공지사항</div>
+<h1>곤욕치른 애플 ios8 상위버전 준비 끝</h1>
+<p>애플이 런처앱(시작화면 앱)을 앱스토어에서 제거했다. 런처앱을 이용하면 iOS8의 위젯 기능이 ‘오작동’ 할 가능성이 있다는 이유를 내세웠다. 
+<br> 
+28일(현지시간) 나인투파이브맥은 애플이 iOS8에서 빠르게 앱에 접속할 수 있도록 하는 런처앱을 앱스토어에서 삭제했다고 보도했다.
+<br> 
+안드로이드와는 달리 애플은 iOS에서 런처 기능을 제공하지 않는다. 바탕화면에서 런처 앱을 사용하려면 관련 기능을 제공하는 앱을 앱스토어에서 내려받아야 했다. 애플이 런처앱을 삭제하면서 iOS8에서는 이마저도 이용할 수 없게 됐다. </p>
+</div>
+
+<div id='footer'>
+<p>비트교육센터 자바63기</p>
+
+</div>
+
+
+</div>
+</body>
+</html>
