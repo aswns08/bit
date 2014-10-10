@@ -4,37 +4,20 @@
  */
 var http = require('http');
 var url = require('url');
-var result;
+var result('querystring');
 
 http.createServer(function handler(req, res) {
 	
-	res.writeHead(200, 'ok', {'Content-Type': 'text/html;charset=UTF-8'});
-    res.write('<html><head><title><test09></title></head>');
-    res.write('<body>');
+	var v1, v2, op ;
 	
 	if(req.method == 'GET') {
 		var urlMap = url.parse(req.url, true);
 		
-		var v1 = urlMap.query.v1;
-		var v2 = urlMap.query.v2;
-		var op = urlMap.query.op;
+		v1 = parseInt(urlMap.query.v1, 10);
+		v2 = parseInt(urlMap.query.v2, 10);
+		op = urlMap.query.op;
 		
-		if(op=='plus') {
-			result = parseInt(v1)+parseInt(v2);
-			res.write('<h1>'+v1+'+'+v2+'='+result+'</h1>');
-		} else if(op=='minus') {
-			result = parseInt(v1)-parseInt(v2);
-			res.write('<h1>'+v1+'-'+v2+'='+result+'</h1>');
-		} else if(op=='multiple') {
-			result = parseInt(v1)*parseInt(v2);
-			res.write('<h1>'+v1+'*'+v2+'='+result+'</h1>');
-		} else if(op=='divide') {
-			result = parseInt(v1)/parseInt(v2);
-			res.write('<h1>'+v1+'/'+v2+'='+result+'</h1>');
-		} else
-		res.write('<h1>연산자가 없습니다.</h1>');
-	    	
-	    
+		displayResult(req, res, v1, v2, op);	
 	} else {
 		var messageBody = '';
 		// data 이벤트는 클라이언트에서 데이터를 읽을 때 마다 
@@ -46,27 +29,46 @@ http.createServer(function handler(req, res) {
 		req.on('data', function(chunk){
 			messageBody += chunk;
 		});
+		
 		req.on('end', function() {
-	    	console.log(messageBody);
+	    	//console.log(messageBody);
 	    	var paramMap = qs.parse(messageBody);
+	    	/*
 	    	console.log('v1 = ', paramMap.v1);
 			console.log('op = ', paramMap.op);
 			console.log('v2 = ', paramMap.v2);
-		
-	    });
-		
-		res.write(req.method + '요청을 지원하지 않습니다.');
+		*/
+	    	v1 = parseInt(paramMap.v1);
+	    	v2 = parseInt(paramMap.v2);
+	    	op = paramMap.op
+	    	
+	    	displayResult(req, res, v1, v2, op);
+	    });	
 	}
-	
-	res.write('</body></html>');
-	res.end();
-    
-    
 	
 }).listen(1337, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:1337/');
 
 function displayResult(req, res, v1, v2, op) {
-	res.writeHead(200, 'ok',
-			)
+	res.writeHead(200, 'ok', {'Content-Type': 'text/html;charset=UTF-8'});
+    res.write('<html><head><title><test10></title></head>');
+    res.write('<body>');
+    
+    if(op=='plus') {
+		result = parseInt(v1)+parseInt(v2);
+		res.write('<h1>'+v1+'+'+v2+'='+result+'</h1>');
+	} else if(op=='minus') {
+		result = parseInt(v1)-parseInt(v2);
+		res.write('<h1>'+v1+'-'+v2+'='+result+'</h1>');
+	} else if(op=='multiple') {
+		result = parseInt(v1)*parseInt(v2);
+		res.write('<h1>'+v1+'*'+v2+'='+result+'</h1>');
+	} else if(op=='divide') {
+		result = parseInt(v1)/parseInt(v2);
+		res.write('<h1>'+v1+'/'+v2+'='+result+'</h1>');
+	} else
+	res.write('<h1>연산자가 없습니다.</h1>');
+    
+    res.write('</body></html>');
+	res.end();
 }

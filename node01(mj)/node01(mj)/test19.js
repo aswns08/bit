@@ -32,7 +32,7 @@ http.createServer(function handler(req, res) {
 		var messageBody = '';
 		
 		// 클라이언트가 보낸 데이터를 읽을 때 마다 호출 될 함수를 등록한다.
-		req.on = ('data', function(chunk){
+		req.on ('data', function(chunk){
 			messageBody += chunk; // 읽은 데이터를 messageBody에 누적함. 
 		}); 
 		
@@ -40,7 +40,7 @@ http.createServer(function handler(req, res) {
 		req.on('end', function () {
 			// 1. 읽은 데이터를 분해하여 객체로 만든다.
 			// 잠깐!
-			console.log("=====>"+messageBody);
+			console.log('=====>', messageBody);
 		});
 		
 		console.log('post 요청');
