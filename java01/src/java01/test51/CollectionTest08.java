@@ -18,7 +18,14 @@ class MyStack {
   
   // 마지막에 입력한 값을 꺼낸다. 목록에서 제거됨.
   public Object pop() {
-    return list[--top];
+    Object obj = null;
+    
+    if(top <= 0) {
+      return obj;
+    }
+    
+    --top;
+    return list[top];
   }
 }
 
@@ -39,6 +46,8 @@ class MyQueue {
   
   public void add(Object value) {
     end.value = value;
+    end.next = new Bucket();
+    end = end.next;
     
   }
   
@@ -46,7 +55,17 @@ class MyQueue {
   
   // 첫 번째 입력 값을 꺼낸다. 목록에서 제거됨.
   public Object poll() {
-    return start.value;
+    /*
+    Object temp = start.value;
+    start = start.next;
+    return temp;
+    */
+    
+    Bucket cursor = new Bucket();
+    cursor.value = start.value;
+    start = start.next;
+    
+    return cursor.value;
   }
   
 }
