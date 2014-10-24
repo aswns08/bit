@@ -22,7 +22,11 @@ import java.util.Properties;
 public class Test04 {
 
   public static void main(String[] args) throws Exception {
+    // System.getProperty("환경변수명")
+    // -D 옵션으로 넘어온 값 JVM 환경 변수 값을 꺼낸다.
     
+    
+    // getProperty => (-D이름=값) 이름의 값을 가져오는 메서드
     String iteratorClassName = System.getProperty("iterator");
     
     // 클래스 이름(패키지명 포함)으로 객체 생성하기

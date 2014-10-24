@@ -49,11 +49,16 @@ public class CollectionTest4 {
    따라서 인스턴스를 먼저 생성 해야한다.
    
   Class A {
-    int vale;
+    int value;
   
-    void print() { System.out.system.ou(value); } // 인스턴스 주소 없이는 호출이 불가능 하다.
+    void print() { 
+       
+       System.out.println(value); // 인스턴스 주소 없이는 호출이 불가능 하다. 
+       
+       } 
   
     static void test() { // static 메소드는 this라는 히든변수가 없다.
+    
       print(); // 호출가능 하다면 어떤 일이 사고날까.
       
    }

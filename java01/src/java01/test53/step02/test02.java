@@ -7,7 +7,7 @@ public class test02 {
 
   public static void main(String[] args) {
     
-    Iterator iterator = new Iterator(args);
+    Iterator iterator = new Iterator(args); // 프로그램 아규먼트로 받는다.
     while(iterator.hasNext()) {
       System.out.println(iterator.next());
     }
