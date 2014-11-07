@@ -9,7 +9,6 @@
  */
 package java01.test53.step06;
 
-
 public class Test06 {
   public static void main(String[] args) throws Exception {
     String iteratorClassName = System.getProperty("iterator");

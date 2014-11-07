@@ -1,6 +1,6 @@
 /* 4단계
  - Iterator 변경을 자유롭게 하기
- - Test04 사용할 Iterator를 대체하기 쉽게 하자!
+ - Test04 사용할 Iterator 대체를 쉽게 하자!
  - 해결책
  1) Iterator 클래스 이름을 외부에서 받자!
  2) 외부에서 받은 클래스로 Iterator객체를 생성하자!
@@ -22,6 +22,7 @@ import java.util.Properties;
 public class Test04 {
 
   public static void main(String[] args) throws Exception {
+    
     // System.getProperty("환경변수명")
     // -D 옵션으로 넘어온 값 JVM 환경 변수 값을 꺼낸다.
     
@@ -56,10 +57,6 @@ public class Test04 {
     
     // 안타깝게도 다른 Iterator는 사용할 수 없다.
     // 다음 단계를 보기 바람 !!!!!!!
-    
-    
-    
-    
     
   }
   

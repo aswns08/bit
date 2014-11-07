@@ -68,7 +68,10 @@ public class CollectionTest02 {
     }
     
     
+    
+    
     System.out.println("-------------------------------------");
+    
     ArrayList<Score> list4 = new ArrayList<Score>();
     list4.add(new Score("홍길동", 100, 100,100));
     list4.add(new Score("임꺽정", 90, 90, 90));
