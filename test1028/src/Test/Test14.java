@@ -1,10 +1,4 @@
-/* 데이터 보관처리
- - File I/O API를 사용하여 데이터를 저장하고 꺼낸다.
- - load(), save() 메서드 준비
 
- - CSV(comma seperated value) 문자열을 가지고 객체를 초기화할 수 있도록 
-   Score13에 생성자 추가한다.
- */
 package Test;
 
 import java.io.BufferedWriter;
@@ -61,9 +55,9 @@ public class Test14 {
 					case "delete":
 						doDelete();
 						break;
-					/*case "update":
-						doUpdate(Integer.parseInt(token[1]));
-						break;*/
+					case "update":
+						doUpdate();
+						break;
 					case "exit":
 						break loop;
 					default:
@@ -90,57 +84,49 @@ public class Test14 {
 
 		scanner.close();
 	}
-/*
-	private static void doUpdate() 
-			throws CloneNotSupportedException {
-		
-		rs = stmt.executeQuery("SELECT * FROM PRODUCTS WHERE PNO="+token[1]);
-		while (rs.next()) {
-
-			System.out.print(rs.getString(2) + "의 성적을 삭제하시겠습니까?(y/n)");
-
-		}
-
+	
+	private static void doUpdate() throws SQLException {
 
 		String text = null;
-		System.out.printf("이름(%s):", score.getName());
-		text = scanner.nextLine();
-		if (text.length() > 0)
-			tempScore.setName(text);
+		String Pname;
+		String Qty;
+		String MKname;
 
-		System.out.printf("국어(%d):", score.getKor());
-		text = scanner.nextLine();
-		if (text.length() > 0)
-			tempScore.setKor(Integer.parseInt(text));
+		rs = stmt.executeQuery("SELECT * FROM PRODUCTS WHERE PNO=" + token[1]);
+		
+		while (rs.next()) {
 
-		System.out.printf("영어(%d):", score.getEng());
-		text = scanner.nextLine();
-		if (text.length() > 0)
-			tempScore.setEng(Integer.parseInt(text)); 
+			System.out.printf("제품명(" + rs.getString(2) + ")?");
+			text = scanner.nextLine();
+			if (text.length() > 0)
+				Pname = text;
 
-		System.out.printf("수학(%d):", score.getMath());
-		text = scanner.nextLine();
-		if (text.length() > 0)
-			tempScore.setMath(Integer.parseInt(text));
+			System.out.printf("수량(" + rs.getInt(3) + ")?");
+			text = scanner.nextLine();
+			if (text.length() > 0)
+				Qty = text;
 
-		System.out.print("정말 변경하시겠습니까?(y/n)");
-		if (scanner.nextLine().equalsIgnoreCase("y")) {
+			System.out.printf("제조사(" + rs.getString(4) + ")?");
+			text = scanner.nextLine();
+			if (text.length() > 0)
+				MKname = text;
 			
-			System.out.println("변경하였습니다.");
-		} else {
-			System.out.println("변경 취소하였습니다.");
+			stmt.executeUpdate("UPDATE PRODUCTS SET" 
+			+" PNAME="+Pname+", QTY="+Qty+", ")
+			
 		}
 
+		System.out.println("변경하였습니다.");
+
 	}
-	
-*/
+
 
 	private static void doDelete() throws SQLException {
 
 		rs = stmt.executeQuery("SELECT * FROM PRODUCTS WHERE PNO="+token[1]);
 		while (rs.next()) {
 
-			System.out.print(rs.getString(2) + "의 성적을 삭제하시겠습니까?(y/n)");
+			System.out.print(rs.getString(2) + "를 삭제하시겠습니까?(y/n)");
 
 		}
 
@@ -157,12 +143,15 @@ public class Test14 {
 
 	private static void doList() throws SQLException  {
 		
-		rs = stmt.executeQuery("SELECT * FROM PRODUCTS");
+		rs = stmt.executeQuery("select PNO, PNAME, QTY, MKNAME "
+				+ " FROM PRODUCTS T1, MAKERS T2 "
+				+ " WHERE T1.MKNO=T2.MKNO "
+				+ " ORDER BY PNO; ");
 		while ( rs.next() ) {
 			System.out.print(rs.getInt(1) + ",");
 			System.out.print(rs.getString(2) + ",");
 			System.out.print(rs.getInt(3) + ",");
-			System.out.println(rs.getInt(4));	
+			System.out.println(rs.getString(4));	
 		}
 
 	}
