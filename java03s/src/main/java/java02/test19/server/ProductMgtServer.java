@@ -62,7 +62,9 @@ public class ProductMgtServer {
             "?useUnicode=true&characterEncoding=utf8", 
         "study",
         "study");
+    
     productDao.setDbConnectionPool(conPool);
+    productDao.setSqlSessionFactory(sqlSessionFactory);
     
     Reflections reflections = 
         new Reflections("java02.test19.server.command");
