@@ -6,6 +6,7 @@
    그 폴더 아래에 읽어들인 파일(img1.jpg)를 출력한다.
  */
 package java02.test02;
+kkkk
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
