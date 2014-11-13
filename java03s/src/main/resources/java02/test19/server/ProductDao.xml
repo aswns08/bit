@@ -45,4 +45,22 @@
     	limit #{startIndex}, #{pageSize}
     </if>
   </select>
+  
+  <!-- 만약 파라미터 값이 문자열, 기본형, 랩퍼클래스 객체라면,
+  값을 꺼낼 때 아무 이름이나 지정해도 된다. -->
+  <select id="selectOne"
+  parameterType="java.lang.Integer"
+  resultType="java02.test19.server.Product">
+  SELECT PNO as no,
+    PNAME as name,
+    QTY as quantity,
+    MKNO as makerNo
+    FROM PRODUCTS
+  WHERE PNO=#{value}
+  
+  
+  </select>
+  
+  
+  
 </mapper>
