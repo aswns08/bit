@@ -2,20 +2,18 @@ package java02.test21.server.command;
 
 import java.io.PrintStream;
 import java.util.Map;
-import java.util.Scanner;
-import java02.test21.server.Product;
-import java02.test21.server.ProductDao;
 import java02.test21.server.annotation.Command;
-import java02.test21.server.annotation.Component;
+import java02.test21.server.dao.ProductDao;
+import java02.test21.server.domain.Product;
 
-@Component("product")
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class ProductCommand {
-  ProductDao productDao;
-  
-  public void setProductDao(ProductDao productDao) {
-    this.productDao = productDao;
-  }
-  
+	@Autowired
+	ProductDao productDao;
+
   
   @Command("product/add")
   public void add(Map<String, Object> params) {

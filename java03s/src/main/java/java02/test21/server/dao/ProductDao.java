@@ -1,27 +1,21 @@
 /* 페이징 처리
  * => DBMS마다 처리하는 방법이 다르다.    
  */
-package java02.test21.server;
+package java02.test21.server.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java02.test21.server.annotation.Component;
+import java02.test21.server.domain.Product;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ProductDao {
-  SqlSessionFactory sqlSessionFactory;
-
-  public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-    this.sqlSessionFactory = sqlSessionFactory;
-  }
+	@Autowired
+	SqlSessionFactory sqlSessionFactory;
 
 
   public ProductDao() {}
