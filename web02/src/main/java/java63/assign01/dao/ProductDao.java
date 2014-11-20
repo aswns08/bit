@@ -1,37 +1,40 @@
 /* 페이징 처리
  * => DBMS마다 처리하는 방법이 다르다.    
  */
-package java02.test19.server;
+package java63.assign01.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java02.test19.server.annotation.Component;
+import java63.assign01.domain.Product;
 
+import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ProductDao {
-  SqlSessionFactory sqlSessionFactory;
 
-  public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-    this.sqlSessionFactory = sqlSessionFactory;
-  }
+	SqlSessionFactory sqlSessionFactory;
 
-  public ProductDao() {}
+	public ProductDao() throws IOException {
+		
+		String resource = "java63/assign01/dao/mybatis-config.xml";
+		InputStream input = Resources.getResourceAsStream(resource);
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(input);
+	}
+  
 
-  public Product selectOne(int no) {
+public Product selectOne(int no) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
 
     try {
       return sqlSession
-          .selectOne(
-              "java02.test19.server.ProductDao.selectOne",no);/* new Integer(no) */
+          .selectOne( 
+              "java63.assign01.dao.ProductDao.selectOne",no);/* new Integer(no) */
     } finally {
       sqlSession.close();
     }
@@ -41,7 +44,7 @@ public class ProductDao {
     SqlSession sqlSession = sqlSessionFactory.openSession();
 
     try {
-      sqlSession.update("java02.test19.server.ProductDao.update", product);
+      sqlSession.update("java63.assign01.dao.ProductDao.update", product);
       sqlSession.commit();
 
     } finally {
@@ -53,7 +56,7 @@ public class ProductDao {
     SqlSession sqlSession = sqlSessionFactory.openSession();
 
     try {
-      sqlSession.delete("java02.test19.server.ProductDao.delete", no);
+      sqlSession.delete("java63.assign01.dao.ProductDao.delete", no);
       sqlSession.commit();
 
     } finally {
@@ -71,7 +74,7 @@ public class ProductDao {
     try {
       return sqlSession
           .selectList(
-              "java02.test19.server.ProductDao.selectList",
+              "java63.assign01.dao.ProductDao.selectList",
               paramMap);
 
     } finally {
@@ -83,7 +86,7 @@ public class ProductDao {
     SqlSession sqlSession = sqlSessionFactory.openSession();
 
     try {
-      sqlSession.insert("java02.test19.server.ProductDao.insert", product);
+      sqlSession.insert("java63.assign01.dao.ProductDao.insert", product);
       sqlSession.commit();
 
     } finally {

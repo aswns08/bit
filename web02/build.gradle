@@ -1,13 +1,22 @@
 // 그래들 빌드 명령어를 담고 있는 라이브러리를 가져온다.
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'war'
 
 compileJava {
   // 소스의 자바 버전 제한하기
   // => 지정된 버전의 문법이 아닌 경우 오류 출력한다.
   sourceCompatibility = 1.8
   options.encoding = 'UTF-8'
+}
+
+eclipse {
+	wtp {
+		facet {
+			facet name:'jst.web', version:'3.0'
+		}
+	}
 }
 
 
@@ -20,7 +29,8 @@ repositories {
 // 의존 라이브러리 검색 사이트  
 //      ==> http://www.mvnrepository.com/
 dependencies {
-  compile 'javax.servlet:javax.servlet-api:3.1.0'
+	/* providedCompile => 컴파일에서만 사용. 배치에서 제외 */
+  providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
   compile 'org.springframework:spring-jdbc:4.1.2.RELEASE'
   compile 'org.mybatis:mybatis-spring:1.2.2'
   compile 'org.springframework:spring-context:4.1.2.RELEASE'

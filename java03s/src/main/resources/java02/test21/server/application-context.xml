@@ -13,20 +13,22 @@
     <!-- 컴포넌트(객체) 자동 생성을 지정하기-->
 	<context:component-scan base-package="java02.test21.server" />
 
-<!-- Database 케넉션 풀 준비 -->
+	<!-- Database 케넉션 풀 준비 -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/studydb?useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/studydb?useUnicode=true&amp;characterEncoding=utf8" />
 		<property name="username" value="study" />
 		<property name="password" value="study" />
 	</bean>
 
-	<!-- SQLSessionFactory 준비 -->
+	<!-- SQLSessionFactory 준비 => SqlSessionFactory 객체를 준비. -->
+
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		 <property name="mapperLocations" value="classpath*:java02/test21/server/dao/*Dao.xml" />
-		 <property name="typeAliasesPackage" value="java02.test21.server.domain" />
+		<property name="mapperLocations" value="classpath*:java02/test21/server/dao/*Dao.xml" />
+		<property name="typeAliasesPackage" value="java02.test21.server.domain" />
 	</bean>
 
 	<bean id="transactionManager"
