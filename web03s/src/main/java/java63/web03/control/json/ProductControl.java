@@ -51,10 +51,14 @@ public class ProductControl {
   }
 
   @RequestMapping("/delete")
-  public String delete(int no) throws Exception {
+  public Object delete(int no) throws Exception {
     productDao.deletePhoto(no);
     productDao.delete(no);
-    return "redirect:list.do";
+    
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    
+    return resultMap;
   }
   
   @RequestMapping("/list")
@@ -86,20 +90,25 @@ public class ProductControl {
   }
   
   @RequestMapping("/update")
-  public String update(Product product) throws Exception {
+  public Object update(Product product) throws Exception {
     productDao.update(product);
-    return "redirect:list.do";
+    
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    
+    return resultMap;
   }
   
   @RequestMapping("/view")
-  public String view(int no, Model model) throws Exception {
+  public Object view(int no, Model model) throws Exception {
     Product product = productDao.selectOne(no);
-    model.addAttribute("product", product);
-    model.addAttribute("photos", 
-        productDao.selectPhoto(product.getNo()));
     
-    model.addAttribute("makers", makerDao.selectNameList());
-    return "product/ProductView";
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("product", product);
+    resultMap.put("photos", productDao.selectPhoto(product.getNo()));
+    
+    return resultMap;
   }
 }
 

@@ -9,6 +9,12 @@ $(function(){
 	$('.form').load('form.html');
 
 	loadProductList(1);
+	
+	// 셀렉터가 두번째 파라미터로 들어오게 되면 
+	// 현재 그리고 앞으로 만들어질 태그에 대해서도 이 함수를 적용해라.
+	$(document).on('click', '.data-row a', function(){
+	  loadProduct($(this).attr('data-no')); // 오리지날 태그 말고 가공된 태그
+	});
 });
 
 
@@ -39,6 +45,8 @@ function setPageNo(currPageNo, maxPageNo) {
 }
 	
 function loadProductList(pageNo) {
+  if(pageNo <= 0) pageNo = currPageNo;
+  
 	$.getJSON('../json/product/list.do?pageNo=' + pageNo, 
     function(data){
       setPageNo(data.currPageNo, data.maxPageNo);
@@ -62,3 +70,4 @@ function loadProductList(pageNo) {
       }
     });
 }
+
